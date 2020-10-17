@@ -1,27 +1,33 @@
 package main;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.Canvas;
 import java.awt.Toolkit;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class Interface {
-    
-    public Interface() {
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
 
-        panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
-        panel.setLayout(new GridLayout(0, 4));
-		frame.add(panel, BorderLayout.CENTER);
+    private JFrame frame;
+    private Canvas canvas;
+    
+    public Interface(String title) {
+        frame = new JFrame(title);
+        canvas = new Canvas();
+    }
+
+    public void initialize() {
 	    frame.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("LMAO");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		frame.pack();
+        
+        canvas.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
+        canvas.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
+        canvas.setMinimumSize(Toolkit.getDefaultToolkit().getScreenSize());
+
+        frame.add(canvas);
+        frame.pack();
     }
 
 }
