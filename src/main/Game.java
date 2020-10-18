@@ -13,16 +13,16 @@ public class Game implements Runnable {
     }
 
     private void init() {
-        Display display = new Display();
+        display = new Display();
         display.initialize();
     }
 
     private void update() {
-
+        System.out.println("updating");
     }
 
     private void render() {
-
+        System.out.println();
     }
 
     @Override
