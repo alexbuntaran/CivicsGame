@@ -2,20 +2,24 @@ package states;
 
 import java.awt.Graphics;
 
+import entities.characters.Player;
+
 public class GameState extends State {
 
-    public GameState() {
+    private Player player;
 
+    public GameState() {
+        player = new Player(100, 100);
     }
 
     @Override
     public void update() {
-
+        player.update();
     }
 
     @Override
     public void render(Graphics g) {
-        g.drawRect(10, 10, 100, 100);
+        player.render(g);
     }
     
 }

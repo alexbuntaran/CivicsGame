@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 
 import states.State;
 import states.GameState;
+import states.MenuState;
 
 import utils.Display;
 
@@ -18,10 +19,12 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
 
+    private State menuState;
     private State gameState;
 
     public Game() {
         display = new Display();
+        menuState = new MenuState();
         gameState = new GameState();
         running = false;
     }
@@ -39,11 +42,11 @@ public class Game implements Runnable {
         }
     }
 
+    
     private void render() {
+        g = bs.getDrawGraphics();
         int width = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         int height = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-
-        g = bs.getDrawGraphics();
         g.clearRect(0, 0, width, height);
 
         if (State.getState() != null) {
