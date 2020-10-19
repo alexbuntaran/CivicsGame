@@ -1,12 +1,21 @@
 package main;
 
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.awt.Toolkit;
+
 import utils.Display;
+import utils.ImageLoader;
 
 public class Game implements Runnable {
 
-    private Display display;
     private Thread thread;
     private boolean running;
+
+    private Display display;
+    private BufferStrategy bs;
+    private Graphics g;
 
     public Game() {
         running = false;
@@ -15,22 +24,48 @@ public class Game implements Runnable {
     private void init() {
         display = new Display();
         display.initialize();
+        display.getCanvas().createBufferStrategy(3);
+        bs = display.getCanvas().getBufferStrategy();
     }
 
+    int x = 0;
     private void update() {
-        System.out.println("updating");
+        x += 1;
     }
 
     private void render() {
-        System.out.println();
+        int width = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+        int height = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+
+        g = bs.getDrawGraphics();
+        g.clearRect(0, 0, width, height);
+
+        g.drawRect(x, 50, 100, 100);
+
+        bs.show();
+        g.dispose();
     }
 
     @Override
     public void run() {
         init();
+
+        int fps = 60;
+        double timePerTick = 1000000000 / fps;
+        double delta = 0;
+        long now = 0;
+        long lastTime = System.nanoTime();
+
         while (running) {
-            update();
-            render();
+            now = System.nanoTime();
+            delta += (now - lastTime) / timePerTick;
+            lastTime = now;
+            
+            if (delta >= 1) {
+                update();
+                render();
+                delta--;
+            }
         }
 
         stop();
