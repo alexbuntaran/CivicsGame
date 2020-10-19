@@ -2,11 +2,12 @@ package main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 import java.awt.Toolkit;
 
+import states.State;
+import states.GameState;
+
 import utils.Display;
-import utils.ImageLoader;
 
 public class Game implements Runnable {
 
@@ -17,20 +18,25 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
 
+    private State gameState;
+
     public Game() {
+        display = new Display();
+        gameState = new GameState();
         running = false;
     }
 
     private void init() {
-        display = new Display();
         display.initialize();
         display.getCanvas().createBufferStrategy(3);
         bs = display.getCanvas().getBufferStrategy();
+        State.setState(gameState);
     }
 
-    int x = 0;
     private void update() {
-        x += 1;
+        if (State.getState() != null) {
+            State.getState().update();
+        }
     }
 
     private void render() {
@@ -40,7 +46,9 @@ public class Game implements Runnable {
         g = bs.getDrawGraphics();
         g.clearRect(0, 0, width, height);
 
-        g.drawRect(x, 50, 100, 100);
+        if (State.getState() != null) {
+            State.getState().render(g);
+        }
 
         bs.show();
         g.dispose();
