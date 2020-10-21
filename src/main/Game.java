@@ -8,8 +8,12 @@ import states.State;
 import states.GameState;
 
 import utils.Display;
+import utils.KeyManager;
 
 public class Game implements Runnable {
+
+    private final int WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+    private final int HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
     private Thread thread;
     private boolean running;
@@ -21,37 +25,33 @@ public class Game implements Runnable {
     // private State menuState;
     private State gameState;
 
+    private KeyManager keyManager;
+
     public Game() {
         display = new Display();
-        // menuState = new MenuState();
-        gameState = new GameState();
+        // menuState = new MenuState(this);
+        gameState = new GameState(this);
+        keyManager = new KeyManager();
         running = false;
     }
 
     private void init() {
         display.initialize();
+        display.getFrame().addKeyListener(keyManager);
         display.getCanvas().createBufferStrategy(3);
         bs = display.getCanvas().getBufferStrategy();
         State.setState(gameState);
     }
 
     private void update() {
-        if (State.getState() != null) {
-            State.getState().update();
-        }
+        keyManager.update();
+        State.getState().update();
     }
-
     
     private void render() {
         g = bs.getDrawGraphics();
-        int width = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-        int height = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-        g.clearRect(0, 0, width, height);
-
-        if (State.getState() != null) {
-            State.getState().render(g);
-        }
-
+        g.clearRect(0, 0, WIDTH, HEIGHT);
+        State.getState().render(g);
         bs.show();
         g.dispose();
     }
@@ -94,6 +94,10 @@ public class Game implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public KeyManager getKeyManager() {
+        return keyManager;
     }
 
 }

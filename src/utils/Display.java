@@ -20,11 +20,16 @@ public class Display {
         canvas.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
         canvas.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         canvas.setMinimumSize(Toolkit.getDefaultToolkit().getScreenSize());
+        canvas.setFocusable(false);
         frame.add(canvas, BorderLayout.CENTER);
 	    frame.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.pack();
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 
     public Canvas getCanvas() {
