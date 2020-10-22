@@ -1,11 +1,11 @@
 package entities;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import main.Game;
+import utils.Updater;
 
-public abstract class Entity {
+public abstract class Entity implements Updater {
 
     protected Game game;
     protected double x;
@@ -54,9 +54,5 @@ public abstract class Entity {
     public void setHeight(int height) {
         this.height = height;
     }
-    
-    public abstract void update();
-
-    public abstract void render(Graphics g);
 
 }

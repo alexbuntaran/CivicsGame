@@ -2,18 +2,14 @@ package main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.Toolkit;
 
 import states.State;
 import states.GameState;
-
-import utils.Display;
-import utils.KeyManager;
+import utils.Constants;
+import utils.displayers.Display;
+import utils.managers.KeyManager;
 
 public class Game implements Runnable {
-
-    private final int WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-    private final int HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
     private Thread thread;
     private boolean running;
@@ -50,7 +46,7 @@ public class Game implements Runnable {
     
     private void render() {
         g = bs.getDrawGraphics();
-        g.clearRect(0, 0, WIDTH, HEIGHT);
+        g.clearRect(0, 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
         State.getState().render(g);
         bs.show();
         g.dispose();

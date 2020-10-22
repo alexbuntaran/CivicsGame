@@ -28,18 +28,6 @@ public abstract class Character extends Entity {
         y += yMove;
     }
 
-    public void moveX() {
-        if (xMove > 0) {
-            int tx = (int) (x + xMove + bounds.x + bounds.width);
-        } else if (xMove < 0) {
-
-        }
-    }
-
-    public void moveY() {
-
-    }
-
     // public boolean collision() {
 
     // }

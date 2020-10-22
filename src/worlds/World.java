@@ -2,15 +2,13 @@ package worlds;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.awt.Toolkit;
 
 import main.Game;
-import utils.ImageLoader;
+import utils.Constants;
+import utils.Updater;
+import utils.displayers.ImageLoader;
 
-public class World {
-
-    private final int WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-    private final int HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+public class World implements Updater {
 
     private Game game;
     private BufferedImage background;
@@ -20,12 +18,14 @@ public class World {
         background = ImageLoader.loadImage("temp-pics/road.png");
     }
 
+    @Override
     public void update() {
-        
+
     }
 
+    @Override
     public void render(Graphics g) {
-        g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
+        g.drawImage(background, 0, 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
     }
 
 }

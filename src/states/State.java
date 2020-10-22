@@ -1,10 +1,9 @@
 package states;
 
-import java.awt.Graphics;
-
 import main.Game;
+import utils.Updater;
 
-public abstract class State {
+public abstract class State implements Updater {
 
     private static State currentState;
 
@@ -21,9 +20,5 @@ public abstract class State {
     public State(Game game) {
         this.game = game;
     }
-
-    public abstract void update();
-
-    public abstract void render(Graphics g);
     
 }

@@ -1,10 +1,11 @@
-package utils;
+package utils.displayers;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
-import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+
+import utils.Constants;
 
 public class Display {
 
@@ -12,17 +13,17 @@ public class Display {
     private Canvas canvas;
     
     public Display() {
-        frame = new JFrame("Civics Game");
+        frame = new JFrame(Constants.GAME_NAME);
         canvas = new Canvas();
     }
 
     public void initialize() {
-        canvas.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
-        canvas.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
-        canvas.setMinimumSize(Toolkit.getDefaultToolkit().getScreenSize());
+        canvas.setPreferredSize(Constants.FRAME_SIZE);
+        canvas.setMaximumSize(Constants.FRAME_SIZE);
+        canvas.setMinimumSize(Constants.FRAME_SIZE);
         canvas.setFocusable(false);
         frame.add(canvas, BorderLayout.CENTER);
-	    frame.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
+	    frame.setPreferredSize(Constants.FRAME_SIZE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.pack();
