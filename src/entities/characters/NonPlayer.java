@@ -21,7 +21,7 @@ public class NonPlayer extends Character {
 
     @Override
     public void render(Graphics g) {
-
+        g.fillRect(200, 200, width, height);
     }
     
 }

@@ -9,6 +9,5 @@ public class Constants {
     public static final Dimension FRAME_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
     public static final int FRAME_WIDTH = (int) FRAME_SIZE.getWidth();
     public static final int FRAME_HEIGHT = (int) FRAME_SIZE.getHeight();
-    public static final int NON_PLAYERS_AMOUNT = 30;
 
 }

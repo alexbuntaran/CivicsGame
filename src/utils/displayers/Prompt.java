@@ -20,7 +20,7 @@ public class Prompt implements ActionListener {
     private JButton option3;
     private JButton option4;
 
-    public Prompt() {
+    public Prompt(String question, String op1, String op2, String op3, String op4) {
         
     }
 
