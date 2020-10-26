@@ -7,8 +7,11 @@ import main.Game;
 
 public class Player extends Character {
 
+    protected boolean canMove;
+
     public Player(Game game, double x, double y) {
         super(game, x, y, DEFAULT_CHARACTER_WIDTH, DEFAULT_CHARACTER_HEIGHT);
+        canMove = true;
     }
 
     private void getInput() {
@@ -34,16 +37,16 @@ public class Player extends Character {
 
     @Override
     public void update() {
-        getInput();
-        move();
+        if (canMove) {
+            getInput();
+            move();
+        }
     }
 
     @Override
     public void render(Graphics g) {
         g.setColor(Color.CYAN);
         g.fillRect((int) x, (int) y, width, height);
-        g.setColor(Color.RED);
-        g.drawRect((int) x + bounds.x, (int) y + bounds.y, width, height);
     }
     
 }

@@ -1,7 +1,5 @@
 package entities;
 
-import java.awt.Rectangle;
-
 import main.Game;
 import utils.Updater;
 
@@ -12,7 +10,6 @@ public abstract class Entity implements Updater {
     protected double y;
     protected int width;
     protected int height;
-    protected Rectangle bounds;
 
     public Entity(Game game, double x, double y, int width, int height) {
         this.game = game;
@@ -20,7 +17,6 @@ public abstract class Entity implements Updater {
         this.y = y;
         this.width = width;
         this.height = height;
-        bounds = new Rectangle(0, 0, width, height);
     }
 
     public double getX() {

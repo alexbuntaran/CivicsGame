@@ -15,7 +15,7 @@ public class World implements Updater {
     
     public World(Game game) {
         this.game = game;
-        background = ImageLoader.loadImage("temp-pics/road.png");
+        background = ImageLoader.loadImage("images/road.png");
     }
 
     @Override

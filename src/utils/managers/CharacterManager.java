@@ -15,34 +15,27 @@ import utils.displayers.Prompt;
 public class CharacterManager implements Updater {
 
     private Game game;
+    private Prompt prompt;
     private Player player;
-    private NonPlayer[] nonPlayers;
-    private ArrayList<Prompt> prompts;
+    private ArrayList<NonPlayer> nonPlayers;
 
     public CharacterManager(Game game) {
         this.game = game;
+        prompt = new Prompt();
         player = new Player(game, 100, 100);
-        prompts = new ArrayList<Prompt>();
-        addPrompts();
+        nonPlayers = new ArrayList<NonPlayer>();
         addNonPlayers();
     }
 
-    private void addPrompts() {
+    private void addNonPlayers() {
         try {
-            Scanner reader = new Scanner(new File("src/utils/managers/prompts.txt"));
+            Scanner reader = new Scanner(new File("src/utils/managers/prompts/prompts.txt"));
             while (reader.hasNextLine()) {
                 String[] data = reader.nextLine().split(",");
-                prompts.add(new Prompt(data[0], data[1], data[2], data[3], data[4]));
+                nonPlayers.add(new NonPlayer(game, 500, 500, player, prompt, data));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-    }
-
-    private void addNonPlayers() {
-        nonPlayers = new NonPlayer[prompts.size()];
-        for (int i = 0; i < nonPlayers.length; i++) {
-            nonPlayers[i] = new NonPlayer(game, 500, 500, prompts.get(i));
         }
     }
 

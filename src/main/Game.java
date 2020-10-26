@@ -18,14 +18,12 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
 
-    // private State menuState;
     private State gameState;
 
     private KeyManager keyManager;
 
     public Game() {
         display = new Display();
-        // menuState = new MenuState(this);
         gameState = new GameState(this);
         keyManager = new KeyManager();
         running = false;
