@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import entities.characters.NonPlayer;
@@ -30,9 +31,14 @@ public class CharacterManager implements Updater {
     private void addNonPlayers() {
         try {
             Scanner reader = new Scanner(new File("src/utils/managers/prompts/prompts.txt"));
+            Random rand = new Random();
+            int index = 0;
             while (reader.hasNextLine()) {
                 String[] data = reader.nextLine().split(",");
-                nonPlayers.add(new NonPlayer(game, 500, 500, player, prompt, data));
+                int x = rand.nextInt(100) + index;
+                int y = rand.nextInt(100) + index;
+                index += 200;
+                nonPlayers.add(new NonPlayer(game, x, y, player, prompt, data));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

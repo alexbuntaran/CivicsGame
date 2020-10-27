@@ -1,1 +1,4 @@
 What is the most powerful branch of government?, Legislative Branch, Judicial Branch, Executive Branch, All of the above
+What branch makes laws?, Legislative Branch, Judicial Branch, Executive Branch, All of the above
+What is the minimum age for House of Rep?, 25 years old, 5 years old, 40 years old, 10 years old
+What is the minimum age for Senate?, 30 years old, 5 years old, 40 years old, 10 years old

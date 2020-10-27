@@ -15,8 +15,8 @@ public class NonPlayer extends Character {
 
     public NonPlayer(Game game, double x, double y, Player player, Prompt prompt, String[] data) {
         super(game, x, y, DEFAULT_CHARACTER_WIDTH, DEFAULT_CHARACTER_HEIGHT);
-        this.prompt = prompt;
         this.player = player;
+        this.prompt = prompt;
         this.data = data;
         displayed = false;
     }
@@ -44,7 +44,7 @@ public class NonPlayer extends Character {
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.GREEN);
+        g.setColor(Color.RED);
         g.fillRect((int) x, (int) y, width, height);
     }
     

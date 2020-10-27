@@ -79,7 +79,8 @@ public class Prompt implements ActionListener {
     }
 
     public boolean isClosed() {
-        return isClosed;
+        // return isClosed;
+        return frame.isDisplayable();
     }
 
     @Override
