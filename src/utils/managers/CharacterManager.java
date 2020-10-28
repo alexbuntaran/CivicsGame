@@ -22,8 +22,8 @@ public class CharacterManager implements Updater {
 
     public CharacterManager(Game game) {
         this.game = game;
-        prompt = new Prompt();
         player = new Player(game, 100, 100);
+        prompt = new Prompt(player);
         nonPlayers = new ArrayList<NonPlayer>();
         addNonPlayers();
     }
@@ -43,6 +43,10 @@ public class CharacterManager implements Updater {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isAlive() {
+        return player.getHealth() > 0;
     }
 
     @Override

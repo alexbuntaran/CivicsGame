@@ -37,6 +37,10 @@ public class NonPlayer extends Character {
                 prompt.displayFrame(data);
                 displayed = true;
             }
+
+            if (player.getHealth() <= 0) {
+                prompt.closeFrame();
+            }
         } else {
             displayed = false;
         }

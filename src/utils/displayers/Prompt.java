@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Random;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -12,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import entities.characters.Player;
 import utils.Constants;
 
 public class Prompt implements ActionListener {
@@ -26,9 +29,11 @@ public class Prompt implements ActionListener {
     private JButton option3;
     private JButton option4;
 
+    private Player player;
+    private String answer;
     private boolean isClosed;
 
-    public Prompt() {
+    public Prompt(Player player) {
         frame = new JFrame();
         panel = new JPanel();
 
@@ -58,15 +63,38 @@ public class Prompt implements ActionListener {
         frame.setLocationRelativeTo(null);
         frame.pack();
         
+        this.player = player;
         isClosed = true;
     }
-
+    
     public void displayFrame(String[] data) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        Random rand = new Random();
+        int index = 0;
+        answer = data[1];
+
         question.setText(data[0]);
-        option1.setText(data[1]);
-        option2.setText(data[2]);
-        option3.setText(data[3]);
-        option4.setText(data[4]);
+
+        index = rand.nextInt(list.size());
+        option1.setText(data[list.get(index)]);
+        list.remove(index);
+
+        index = rand.nextInt(list.size());
+        option2.setText(data[list.get(index)]);
+        list.remove(index);
+
+        index = rand.nextInt(list.size());
+        option3.setText(data[list.get(index)]);
+        list.remove(index);
+
+        index = rand.nextInt(list.size());
+        option4.setText(data[list.get(index)]);
+        list.remove(index);
 
         frame.setVisible(true);
 
@@ -79,17 +107,17 @@ public class Prompt implements ActionListener {
     }
 
     public boolean isClosed() {
-        // return isClosed;
-        return frame.isDisplayable();
+        return isClosed;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(option1)) {
-            System.out.println("Correct");
+        JButton ans = (JButton) e.getSource();
+        if (ans.getText().equals(answer)) {
+            player.correct();
             closeFrame();
         } else {
-            System.out.println("Wrong");
+            player.incorrect();
         }
     }
     

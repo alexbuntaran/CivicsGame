@@ -21,6 +21,9 @@ public class GameState extends State {
     public void update() {
         world.update();
         cm.update();
+        if (!cm.isAlive()) {
+            State.setState(new EndState(game));
+        }
     }
 
     @Override
