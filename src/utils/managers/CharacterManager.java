@@ -12,6 +12,7 @@ import entities.characters.Player;
 import main.Game;
 import utils.Updater;
 import utils.displayers.Prompt;
+import worlds.World;
 
 public class CharacterManager implements Updater {
 
@@ -20,9 +21,9 @@ public class CharacterManager implements Updater {
     private Player player;
     private ArrayList<NonPlayer> nonPlayers;
 
-    public CharacterManager(Game game) {
+    public CharacterManager(Game game, World world) {
         this.game = game;
-        player = new Player(game, 100, 100);
+        player = new Player(game, 100, 100, world);
         prompt = new Prompt(player);
         nonPlayers = new ArrayList<NonPlayer>();
         addNonPlayers();
@@ -33,6 +34,7 @@ public class CharacterManager implements Updater {
             Scanner reader = new Scanner(new File("src/utils/managers/prompts/prompts.txt"));
             Random rand = new Random();
             int index = 0;
+            // TODO: set the current positions of each npc
             while (reader.hasNextLine()) {
                 String[] data = reader.nextLine().split(",");
                 int x = rand.nextInt(100) + index;

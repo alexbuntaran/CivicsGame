@@ -5,21 +5,27 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import main.Game;
+import utils.Line;
+import utils.Line.Side;
 import utils.displayers.ImageLoader;
+import worlds.World;
 
 public class Player extends Character {
 
     protected boolean canMove;
 
+    private World world;
+
     private int score;
 
     private BufferedImage image;
 
-    public Player(Game game, double x, double y) {
+    public Player(Game game, double x, double y, World world) {
         super(game, x, y, DEFAULT_CHARACTER_WIDTH, DEFAULT_CHARACTER_HEIGHT);
         canMove = true;
         score = 0;
         image = ImageLoader.loadImage("images/mc.png");
+        this.world = world;
     }
 
     private void getInput() {
@@ -27,19 +33,19 @@ public class Player extends Character {
         yMove = 0.0;
 
         if (game.getKeyManager().up) {
-            yMove = -speed;
+            yMove = upSpeed;
         }
 
         if (game.getKeyManager().down) {
-            yMove = speed;
+            yMove = downSpeed;
         }
 
         if (game.getKeyManager().left) {
-            xMove = -speed;
+            xMove = leftSpeed;
         }
 
         if (game.getKeyManager().right) {
-            xMove = speed;
+            xMove = rightSpeed;
         }
     }
 
@@ -56,6 +62,34 @@ public class Player extends Character {
         if (canMove) {
             getInput();
             move();
+        }
+
+        for (Line line : world.getLines()) {
+            if (line.getSide() == Side.UP) {
+                if (y <= line.getY0()) {
+                    upSpeed = 0;
+                } else {
+                    upSpeed = -DEFAULT_SPEED;
+                }
+            } else if (line.getSide() == Side.DOWN) {
+                if (y + height >= line.getY0()) {
+                    downSpeed = 0;
+                } else {
+                    downSpeed = DEFAULT_SPEED;
+                }
+            } else if (line.getSide() == Side.LEFT) {
+                if (x <= line.getX0()) {
+                    leftSpeed = 0;
+                } else {
+                    leftSpeed = -DEFAULT_SPEED;
+                }
+            } else {
+                if (x + width >= line.getX0()) {
+                    rightSpeed = 0;
+                } else {
+                    rightSpeed = DEFAULT_SPEED;
+                }
+            }
         }
     }
 

@@ -60,7 +60,6 @@ public class Prompt implements ActionListener {
         frame.setPreferredSize(new Dimension(Constants.FRAME_WIDTH / 3, Constants.FRAME_HEIGHT / 2));
 		frame.setTitle("Prompt");
         frame.setVisible(false);
-        frame.setLocationRelativeTo(null);
         frame.pack();
         
         this.player = player;
@@ -97,6 +96,8 @@ public class Prompt implements ActionListener {
         list.remove(index);
 
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+        frame.pack();
 
         isClosed = false;
     }

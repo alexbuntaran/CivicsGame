@@ -14,7 +14,7 @@ public class GameState extends State {
     public GameState(Game game) {
         super(game);
         world = new World(game);
-        cm = new CharacterManager(game);
+        cm = new CharacterManager(game, world);
     }
 
     @Override
