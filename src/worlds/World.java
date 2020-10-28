@@ -42,7 +42,7 @@ public class World implements Updater {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(map, 0, 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
+        // g.drawImage(map, 0, 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, null);
         for (Line line : lines) {
             g.drawLine(line.getX0(), line.getY0(), line.getX1(), line.getY1());
         }
