@@ -1,6 +1,6 @@
 What is the most powerful branch of government?, Legislative Branch, Judicial Branch, Executive Branch, All of the above
 What branch makes laws?, Legislative Branch, Judicial Branch, Executive Branch, All of the above
-What is the minimum age for someone to be in the House of Representatives?, 25 years old, 5 years old, 40 years old, 10 years old
+What is the min age for someone to be in the House of Representatives?, 25 years old, 5 years old, 40 years old, 10 years old
 What is the minimum age for someone to be a senator?, 30 years old, 5 years old, 40 years old, 10 years old
 John Locke believed that government should exist solely to protect this:, Natural rights, Property, Voting rights, Liberty
 A small group of people make most government decisions for their benefit:, Oligarchy, Theocracy, Monarchy, Totalitarian Regime
