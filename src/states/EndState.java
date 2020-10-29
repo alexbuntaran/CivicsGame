@@ -11,10 +11,10 @@ public class EndState extends State {
     private String message;
     private boolean won;
 
-    public EndState(Game game) {
+    public EndState(Game game, boolean won) {
         super(game);
         message = "";
-        won = false;
+        this.won = won;
     }
 
     @Override

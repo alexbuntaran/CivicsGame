@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import entities.characters.NonPlayer;
 import entities.characters.Player;
 import utils.Constants;
 
@@ -30,6 +31,7 @@ public class Prompt implements ActionListener {
     private JButton option4;
 
     private Player player;
+    private NonPlayer nonPlayer;
     private String answer;
     private boolean isClosed;
 
@@ -66,7 +68,7 @@ public class Prompt implements ActionListener {
         isClosed = true;
     }
     
-    public void displayFrame(String[] data) {
+    public void displayFrame(String[] data, NonPlayer nonPlayer) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         list.add(1);
         list.add(2);
@@ -99,6 +101,7 @@ public class Prompt implements ActionListener {
         frame.setLocationRelativeTo(null);
         frame.pack();
 
+        this.nonPlayer = nonPlayer;
         isClosed = false;
     }
 
@@ -116,6 +119,7 @@ public class Prompt implements ActionListener {
         JButton ans = (JButton) e.getSource();
         if (ans.getText().equals(answer)) {
             player.correct();
+            nonPlayer.kill();
             closeFrame();
         } else {
             player.incorrect();

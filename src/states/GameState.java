@@ -13,7 +13,7 @@ public class GameState extends State {
 
     public GameState(Game game) {
         super(game);
-        world = new World(game);
+        world = new World();
         cm = new CharacterManager(game, world);
     }
 
@@ -22,7 +22,9 @@ public class GameState extends State {
         world.update();
         cm.update();
         if (!cm.isAlive()) {
-            State.setState(new EndState(game));
+            State.setState(new EndState(game, cm.won()));
+        } else if (cm.won()) {
+            State.setState(new EndState(game, cm.won()));
         }
     }
 
